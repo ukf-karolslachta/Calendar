@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Calendar';
+  constructor(){
+    console.log(`test log`);
+  }
 }
