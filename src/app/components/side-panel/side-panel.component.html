@@ -1,1 +1,9 @@
-<p>side-panel works!</p>
+<div class="side-menu" *ngIf="showPanel">
+    <div class="close-button" (click)="closePanel()">&#10006;</div>
+    <h3>Order Details</h3>
+    <div class="order-details">
+      <p>Date: {{ selectedOrder.date | date: 'medium' }}</p>
+      <p>Name: {{ selectedOrder.username }}</p>
+      <p>Description: {{ selectedOrder.description }}</p>
+    </div>
+  </div>
