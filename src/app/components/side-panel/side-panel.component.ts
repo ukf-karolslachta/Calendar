@@ -17,7 +17,7 @@ export class SidePanelComponent implements OnInit {
   
   ngOnInit() {
     this.selecteOrderService.selectedOrder$.subscribe((order) => {
-      if (order && (this.selectedOrder != order)) {
+      if (order) {
         this.showPanel = true;
       }
       this.selectedOrder = order!;

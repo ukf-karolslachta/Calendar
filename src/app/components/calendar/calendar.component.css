@@ -52,6 +52,10 @@
     margin-top: 10px;
   }
   
+#order-card-hide{
+  background: red;
+}
+
   .calendar-container .order-card {
     cursor: pointer;
   }
