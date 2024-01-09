@@ -11,8 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -31,6 +30,7 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
     MatInputModule,
     MatNativeDateModule,
     FormsModule, 
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

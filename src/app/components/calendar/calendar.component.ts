@@ -20,12 +20,31 @@ export class CalendarComponent implements OnInit {
   }
 
   private loadOrdersForSelectedDate(selectedDate: Date) {
-    const startDate = selectedDate?.toISOString();
+   // const startDate = selectedDate?.toISOString();
+    const startDate = this.getStartOfMonth(selectedDate).toISOString();
     const endDate = this.getEndOfMonth(selectedDate).toISOString();
     this.loadOrders(startDate, endDate);
   }
 
   ngOnInit() {
+    this.loadOrdersForSelectedDate(this.selectedYearMonth);
+  }
+
+  leftArrow():void {
+    if(this.selectedYearMonth.getMonth() === 0) {
+      this.selectedYearMonth = new Date(this.selectedYearMonth.getFullYear()-1,11,1);
+    } else {
+      this.selectedYearMonth = new Date(this.selectedYearMonth.getFullYear(),this.selectedYearMonth.getMonth()-1,1);
+    }
+    this.loadOrdersForSelectedDate(this.selectedYearMonth);
+  }
+
+  rightArrow():void {
+    if(this.selectedYearMonth.getMonth() === 11) {
+      this.selectedYearMonth = new Date(this.selectedYearMonth.getFullYear()+1,0,1);
+    } else {
+      this.selectedYearMonth = new Date(this.selectedYearMonth.getFullYear(),this.selectedYearMonth.getMonth()+1,1);
+    }
     this.loadOrdersForSelectedDate(this.selectedYearMonth);
   }
 
@@ -54,23 +73,10 @@ export class CalendarComponent implements OnInit {
   const selectedYearMonth = this.selectedYearMonth; 
 
   let firstDay = new Date(selectedYearMonth.getFullYear(), selectedYearMonth.getMonth(), 1);
-
-  if (selectedYearMonth.getMonth() === 0) {
-  
-  const prevYear = selectedYearMonth.getFullYear() - 1;
-  firstDay = new Date(prevYear, 11, 31); 
-
-  
+ 
   while (firstDay.getDay() !== 1) { 
     firstDay.setDate(firstDay.getDate() - 1);
     }
-  } 
-
-  let startOffset = firstDay.getDay() - 1; 
-
-  if (startOffset !== 0) {
-    firstDay.setDate(1 - startOffset); 
-  }
 
   const lastDay = new Date(selectedYearMonth.getFullYear(), selectedYearMonth.getMonth() + 1, 0);
 
@@ -79,6 +85,7 @@ export class CalendarComponent implements OnInit {
   }
 
   return daysInMonth;
+  
   }
 
   getOrdersForDay(day: Date): Order[] {
